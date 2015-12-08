@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.activity.CPanelActivity"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:showIn="@layout/activity_cpanel">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="0dp"
+     android:layout_weight="8"
+     android:orientation="vertical"
+     android:padding="8dp"
+     >
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="18sp"
+             android:textStyle="bold"
+             android:padding="8dp"
+             android:text="N° ORDER"/>
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_user"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="CLIENTE"
+                 android:textColor="#000000"
+                 android:textSize="15sp"
+                 />
+         </LinearLayout>
+
+
+     </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="right|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="0.75"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_client_title_name"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="Name"
+                 android:textSize="13sp"
+                 android:layout_marginLeft="8dp"
+                 />
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1.25"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+             <TextView
+                 android:id="@+id/tv_client_name"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Renzo Santillan Chavez"
+                 android:textColor="@android:color/black"
+                 android:textSize="13sp"
+                 android:gravity="right" />
+
+         </LinearLayout>
+
+
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="right|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="0.75"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_client_title_dni"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="dni"
+                 android:textSize="13sp"
+                 android:layout_marginLeft="8dp"
+                 />
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1.25"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+             <TextView
+                 android:id="@+id/tv_client_dni"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="45868835"
+                 android:textColor="@android:color/black"
+                 android:textSize="13sp"
+                 android:gravity="right" />
+
+         </LinearLayout>
+
+
+
+     </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="right|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="0.75"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_client_phone"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="Phone"
+                 android:textSize="13sp"
+                 android:layout_marginLeft="8dp"
+                 />
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1.25"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+             <TextView
+                 android:id="@+id/tv_history_status_name"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="51993297151"
+                 android:textColor="@android:color/black"
+                 android:textSize="13sp"
+                 android:gravity="right" />
+
+         </LinearLayout>
+
+
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:layout_marginTop="20dp"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_details"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="PEDIDO"
+                 android:textColor="#000000"
+                 android:textSize="15sp"
+                 />
+         </LinearLayout>
+
+     </LinearLayout>.
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left"
+         android:padding="10dp"
+         android:minHeight="140dp"
+         android:orientation="horizontal">
+
+         <android.support.v4.widget.NestedScrollView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <TextView
+                 android:id="@+id/tv_order_detail_console"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="console log"
+                 android:textSize="13sp"
+                 android:gravity="right" />
+         </android.support.v4.widget.NestedScrollView>
+
+
+     </LinearLayout>
+
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left|center"
+         android:padding="4dp"
+         android:weightSum="2"
+         android:layout_marginTop="5dp"
+         android:orientation="horizontal">
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="left|center"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/tv_time"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:text="TIEMPO"
+                 android:textColor="#000000"
+                 android:textSize="15sp"
+                 />
+         </LinearLayout>
+
+     </LinearLayout>.
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left"
+         android:padding="10dp"
+         android:orientation="horizontal">
+
+         <TextView
+             android:id="@+id/tv_time_estimated"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Estimado (min)"
+             android:textSize="18sp"
+             android:gravity="right"
+             android:layout_centerVertical="true"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+             android:layout_marginLeft="35dp"
+             android:layout_marginStart="35dp" />
+
+         <EditText
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:inputType="number"
+             android:layout_marginRight="44dp"
+             android:layout_marginEnd="44dp"
+             android:gravity="center"
+             android:textColor="@android:color/holo_red_light"
+             android:text="100"
+             android:layout_alignTop="@+id/tv_time_estimated"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentEnd="true" />
+
+     </RelativeLayout>
+
+
+
+ </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="confirmar"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="cancelar"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>
