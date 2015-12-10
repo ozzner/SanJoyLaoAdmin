@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.parse.ParsePushBroadcastReceiver;
 
+import pe.rsantillanc.sanjoylaoadmin.ui.activity.CPanelActivity;
 import pe.rsantillanc.sanjoylaoadmin.util.Const;
 
 /**
@@ -27,8 +28,12 @@ public class IncomingOrderReceiver extends ParsePushBroadcastReceiver {
         if (intent == null)
             return;
 
-        String string = intent.getExtras().getString("com.parse.Data");
-        Log.e(Const.DEBUG, "Data: " + string);
+        Intent cpanelIntent = new Intent(context, CPanelActivity.class);
+        cpanelIntent.putExtras(intent.getExtras());
+        cpanelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        context.startActivity(cpanelIntent);
+
 
     }
 }
