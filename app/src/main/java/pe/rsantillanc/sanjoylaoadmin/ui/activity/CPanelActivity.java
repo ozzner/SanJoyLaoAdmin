@@ -109,52 +109,45 @@ public class CPanelActivity extends AppCompatActivity {
         Log.e(Const.DEBUG, "CPanel onNewIntent.");
         long totalTime = 0;
         JSONObject dataParse;
+        orderConsole.setText("");
+
         try {
 
             dataParse = new JSONObject(intent.getExtras().getString("com.parse.Data"));
-            JSONObject bodyJSON = new JSONObject(dataParse.getString("data"));
-            JSONObject order = new JSONObject(bodyJSON.getString("order"));
-            JSONObject user = new JSONObject(order.getString("idUser"));
+            JSONObject bodyJSON = dataParse.getJSONObject("data");
+            String amount = bodyJSON.getString("amount");
+            String objectId = bodyJSON.getString("objectId");
 
-            //ORDER
-            String amount = order.getString("price");
-            String objectId = order.getString("objectId");
+            String cdni = bodyJSON.getString("clientDni");
+            String cphone = bodyJSON.getString("clientPhone");
+            String cname = bodyJSON.getString("clientName");
 
-            //CLIENTE
-            String fullName = user.getString("fullName");
-            String phoneNumber = user.getString("phoneNumber");
-            String dni = user.getString("identificationDocument");
+            JSONArray details = (JSONArray) bodyJSON.get("details");
+            String console = "";
 
-            //PEDIDO
-            JSONArray array = bodyJSON.getJSONArray("orderDetails");
-            for (int x = 0; x < array.length(); x++) {
-                JSONObject detail = new JSONObject(array.get(x).toString());
-                JSONObject plateSize = new JSONObject(detail.getString("idPlateSize"));
-                String sPrice = plateSize.getString("price");
-                int itemTime = plateSize.getInt("timeOfPreparation");
-                JSONObject plate = new JSONObject(plateSize.getString("idPlate"));
-                String name = plate.getString("name");
-                totalTime += itemTime;
-                String counter = detail.getString("counter");
+            for (int x = 0; x < details.length(); x++) {
+                JSONObject detail = new JSONObject(details.get(x).toString());
 
-                orderConsole.setText("");
-                orderConsole.setText(
-                        "\n\n-----[ " + name + " ]-----\n" +
-                                "Precio: " + sPrice + "\n" +
-                                "Cantidad: " + counter + "\n" +
-                                "Tiempo: " + itemTime + "\n");
+                console += "[ " + detail.getString("plateName") + " ]\n" +
+                        "Precio: " + detail.getString("platePrice") + "\n" +
+                        "Cantidad: " + detail.getString("plateCounter") + "\n" +
+                        "Tiempo: " + detail.getString("plateTime") + "\n";
+                console += "---------------------------------------------\n\n";
+                totalTime += detail.getInt("plateTime");
             }
 
-            orderConsole.append("\n====================\n");
-            orderConsole.append(" Importe total: S/. " + amount);
+            console += "===================================\n";
+            console += " Importe total: S/. " + amount + "\n\n";
+
+            orderConsole.setText(console);
 
             //ID
             orderID.setText("ORDER: " + objectId);
 
             //Client
-            clientName.setText(fullName);
-            clientDni.setText(String.valueOf(dni));
-            clientPhone.setText(String.valueOf(phoneNumber));
+            clientName.setText(cname);
+            clientDni.setText(String.valueOf(cdni));
+            clientPhone.setText(String.valueOf(cphone));
 
             //Time
             price.setText(String.valueOf(totalTime));
@@ -162,7 +155,6 @@ public class CPanelActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Toast.makeText(getApplicationContext(), "Error parsing. " + e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e(Const.DEBUG, "CPanel JSONException. ", e);
-            e.printStackTrace();
         }
 
     }
