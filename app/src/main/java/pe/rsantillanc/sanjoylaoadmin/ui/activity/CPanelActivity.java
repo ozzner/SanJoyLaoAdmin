@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParsePush;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ public class CPanelActivity extends AppCompatActivity {
     EditText price;
     Button confirm;
     Button cancel;
+
+    String amount;
+    String orderObjectId;
 
 
     @Override
@@ -54,7 +59,8 @@ public class CPanelActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ParsePush confirm = new ParsePush();
+                confirm.setData(buildJsonOrderStatus());
             }
         });
 
@@ -79,6 +85,12 @@ public class CPanelActivity extends AppCompatActivity {
 //        });
 
 
+    }
+
+    private JSONObject buildJsonOrderStatus() {
+        JSONObject body = new JSONObject();
+
+        return null;
     }
 
     @Override
@@ -115,8 +127,8 @@ public class CPanelActivity extends AppCompatActivity {
 
             dataParse = new JSONObject(intent.getExtras().getString("com.parse.Data"));
             JSONObject bodyJSON = dataParse.getJSONObject("data");
-            String amount = bodyJSON.getString("amount");
-            String objectId = bodyJSON.getString("objectId");
+            amount = bodyJSON.getString("amount");
+            orderObjectId = bodyJSON.getString("objectId");
 
             String cdni = bodyJSON.getString("clientDni");
             String cphone = bodyJSON.getString("clientPhone");
@@ -142,7 +154,7 @@ public class CPanelActivity extends AppCompatActivity {
             orderConsole.setText(console);
 
             //ID
-            orderID.setText("ORDER: " + objectId);
+            orderID.setText("ORDER: " + orderObjectId);
 
             //Client
             clientName.setText(cname);
