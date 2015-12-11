@@ -25,6 +25,7 @@ import pe.rsantillanc.sanjoylaoadmin.util.Const;
 public class CPanelActivity extends AppCompatActivity {
 
     TextView orderID;
+    TextView typeOrder;
     TextView clientName;
     TextView clientDni;
     TextView clientPhone;
@@ -36,6 +37,7 @@ public class CPanelActivity extends AppCompatActivity {
     String amount;
     String orderObjectId;
     String userID;
+    String type;
 
 
     @Override
@@ -49,6 +51,7 @@ public class CPanelActivity extends AppCompatActivity {
         Log.e(Const.DEBUG, "CPanel OnCreate.");
 
         orderID = (TextView) findViewById(R.id.order_id);
+        typeOrder = (TextView) findViewById(R.id.tv_type_order);
         clientName = (TextView) findViewById(R.id.tv_client_name);
         clientPhone = (TextView) findViewById(R.id.tv_client_phone);
         clientDni = (TextView) findViewById(R.id.tv_client_dni);
@@ -143,6 +146,7 @@ public class CPanelActivity extends AppCompatActivity {
             JSONObject bodyJSON = dataParse.getJSONObject("data");
             amount = bodyJSON.getString("amount");
             orderObjectId = bodyJSON.getString("objectId");
+            type = bodyJSON.getString("type");
 
             String cdni = bodyJSON.getString("clientDni");
             String cphone = bodyJSON.getString("clientPhone");
@@ -170,6 +174,7 @@ public class CPanelActivity extends AppCompatActivity {
 
             //ID
             orderID.setText("ORDER: " + orderObjectId);
+            typeOrder.setText(type);
 
             //Client
             clientName.setText(cname);
