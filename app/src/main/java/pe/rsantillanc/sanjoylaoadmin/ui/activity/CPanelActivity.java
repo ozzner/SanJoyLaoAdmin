@@ -35,6 +35,7 @@ public class CPanelActivity extends AppCompatActivity {
 
     String amount;
     String orderObjectId;
+    String userID;
 
 
     @Override
@@ -59,15 +60,14 @@ public class CPanelActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParsePush confirm = new ParsePush();
-                confirm.setData(buildJsonOrderStatus());
+                sendNotification(Const.STATUS_CONFIRMED);
             }
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                sendNotification(Const.STATUS_CANCELLED);
             }
         });
 
@@ -87,10 +87,24 @@ public class CPanelActivity extends AppCompatActivity {
 
     }
 
-    private JSONObject buildJsonOrderStatus() {
-        JSONObject body = new JSONObject();
+    private void sendNotification(int statusCode) {
+        ParsePush confirm = new ParsePush();
+        confirm.setData(buildJsonOrderStatus(statusCode));
+        confirm.setChannel(userID);
+        confirm.sendInBackground();
+    }
 
-        return null;
+    private JSONObject buildJsonOrderStatus(int statusCode) {
+        JSONObject body = new JSONObject();
+        try {
+            body.put("objectId", orderObjectId);
+            body.put("status", statusCode);
+            body.put("time", Integer.parseInt(price.getText().toString()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return body;
     }
 
     @Override
@@ -133,6 +147,7 @@ public class CPanelActivity extends AppCompatActivity {
             String cdni = bodyJSON.getString("clientDni");
             String cphone = bodyJSON.getString("clientPhone");
             String cname = bodyJSON.getString("clientName");
+            userID = bodyJSON.getString("clientID");
 
             JSONArray details = (JSONArray) bodyJSON.get("details");
             String console = "";

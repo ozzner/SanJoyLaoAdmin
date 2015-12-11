@@ -33,7 +33,5 @@ public class IncomingOrderReceiver extends ParsePushBroadcastReceiver {
         cpanelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         context.startActivity(cpanelIntent);
-
-
     }
 }
