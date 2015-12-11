@@ -97,9 +97,9 @@ public class CPanelActivity extends AppCompatActivity {
     private JSONObject buildJsonOrderStatus(int statusCode) {
         JSONObject body = new JSONObject();
         try {
-            body.put("objectId", orderObjectId);
-            body.put("status", statusCode);
-            body.put("time", Integer.parseInt(price.getText().toString()));
+            body.put("orderObjectId", orderObjectId);
+            body.put("statusCode", statusCode);
+            body.put("estimatedTime", Integer.parseInt(price.getText().toString()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
