@@ -13,7 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParsePush;
+import com.parse.SendCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +41,8 @@ public class CPanelActivity extends AppCompatActivity {
     String userID;
     String type;
 
+    boolean flagEnebled = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +67,20 @@ public class CPanelActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendNotification(Const.STATUS_CONFIRMED);
+                if (flagEnebled)
+                    sendNotification(Const.STATUS_CONFIRMED);
+                else
+                    Toast.makeText(getApplicationContext(), "Debe recibir una order!", Toast.LENGTH_LONG).show();
             }
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendNotification(Const.STATUS_CANCELLED);
+                if (flagEnebled)
+                    sendNotification(Const.STATUS_CANCELLED);
+                else
+                    Toast.makeText(getApplicationContext(), "Debe recibir una order!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -87,14 +97,23 @@ public class CPanelActivity extends AppCompatActivity {
 //            }
 //        });
 
-
+        if (getIntent().getExtras() != null)
+            onCretateOrder(getIntent());
     }
 
     private void sendNotification(int statusCode) {
         ParsePush confirm = new ParsePush();
         confirm.setData(buildJsonOrderStatus(statusCode));
-        confirm.setChannel(userID);
-        confirm.sendInBackground();
+        confirm.setChannel(Const.SJL_CHANNEL_CLIENT + userID);
+        confirm.sendInBackground(new SendCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null)
+                    Toast.makeText(getApplicationContext(), "Notificación enviada correctamente!", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Error. " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private JSONObject buildJsonOrderStatus(int statusCode) {
@@ -136,10 +155,15 @@ public class CPanelActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Log.e(Const.DEBUG, "CPanel onNewIntent.");
+
+
+        onCretateOrder(intent);
+    }
+
+    private void onCretateOrder(Intent intent) {
         long totalTime = 0;
         JSONObject dataParse;
         orderConsole.setText("");
-
         try {
 
             dataParse = new JSONObject(intent.getExtras().getString("com.parse.Data"));
@@ -183,6 +207,8 @@ public class CPanelActivity extends AppCompatActivity {
 
             //Time
             price.setText(String.valueOf(totalTime));
+
+            flagEnebled = true;
 
         } catch (JSONException e) {
             Toast.makeText(getApplicationContext(), "Error parsing. " + e.getMessage(), Toast.LENGTH_LONG).show();

@@ -6,6 +6,7 @@ package pe.rsantillanc.sanjoylaoadmin.util;
 public class Const {
     public static final String SJL_CHANNEL = "clients";
     public static final String SJL_CHANNEL_ADMIN = "admin";
+    public static final String SJL_CHANNEL_CLIENT = "Client-";
     public static final String DEBUG = "SJLDebug";
 
     //[ STATUS ]
